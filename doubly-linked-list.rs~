@@ -1,0 +1,11 @@
+use std::boxed::Box;
+
+// template in C++ => generic in rust
+struct NODE <T> {
+       data: i32 = 20;
+       // ownership over garbage collector
+};
+fn main() {
+   let x = Box::new(true);
+   println!("value of x: {}", x);
+}

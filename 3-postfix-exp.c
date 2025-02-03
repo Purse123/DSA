@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 #define MAX_ASCII 128
 int PRECEDENCE_TABLE[MAX_ASCII] = {0};
@@ -32,13 +33,36 @@ void initialize_precedence() {
 // Take char and return ASCII, at best wil be O(1)
 #define PRECEDENCE(op) PRECEDENCE_TABLE[(int)op]
 
+void postfix(char *expression, int expLength) {
+  for(size_t i = 0; i < expLength; i++) {
+    char c = expression[i];
+    if (c >= 65 && c <= 90) {
+      printf("Character\n");
+    }
+    else if (c == 40 ) {
+      printf("Open Paranthesis\n");
+    }
+    else if (c == 41 ) {
+      printf("Close Paranthesis\n");
+    }
+    else if (c == 94 || c == 36 ||c == 47 ||c == 42 ||c == 43 ||c == 45) {
+      printf("Arithmethics\n");
+    }
+    else {
+      printf("Invalid Character\n");
+    }
+  }
+}
 int main() {
-  char op;
+  char exp[40];
   initialize_precedence();
-  /* char exp[40]; */
-/*   printf("Enter the infix expression: "); */
-/*   scanf("%s", exp); */
-  printf("Enter the operator: ");
-  scanf("%c", &op);
-  printf("Precedence: %d\n", PRECEDENCE(op));
+  printf("Enter the infix expression: ");
+  scanf("%s", exp);
+  size_t expLen = strlen(exp);
+  postfix(exp, expLen);
+
+
+  /* printf("Enter the operator: "); */
+/*   scanf("%c", &op); */
+/*   printf("Precedence: %d\n", PRECEDENCE(op)); */
 }

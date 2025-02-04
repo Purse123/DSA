@@ -1,16 +1,24 @@
-1. **Write a menu driven program to illustrate basic operations of stack using array.
+1. **Write a menu driven program to illustrate basic operations of `stack using array`.
 a) Push
 b) Pop
 c) Traverse
 d) Exit**
 ***
-2. **Write a menu driven program to illustrate basic operations of stack using pointer.
+2. **Write a menu driven program to illustrate basic operations of `stack using pointer`.
 a) Push
 b) Pop
 c) Traverse
 d) Exit**
 ***
-
+3. **Write a program to convert `Infix` Expression into `Postfix` Expression.**
+***
+4. **Write a program to convert `Infix` Expression into `Prefix` Expression.**
+***
+5. **Write a recursive program to find the `factorial` value of given number.**
+***
+6. **Write a recursive program to find a `fibonacci` sequence.**
+***
+7. **Write a recursive program to find `GCD` of two integers.**
 ***
 
 ## Ascii value:

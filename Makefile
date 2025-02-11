@@ -8,6 +8,8 @@ q2: 2-stack-opp-pointer.c
 	time $(CC) -o 2-stack-opp-pointer 2-stack-opp-pointer.c $(CFLAGS)
 q3: 3-postfix-exp.c
 	time $(CC) -o 3-postfix-exp 3-postfix-exp.c $(CFLAGS)
+q4: 4-prefix-exp.c
+	$(CC) -o 4-prefix-exp 4-prefix-exp.c $(CFLAGS)
 q5: 3-postfix-exp.c
 	time $(CC) -o 5-factorial 5-factorial.c $(CFLAGS)
 q6: 3-postfix-exp.c
@@ -15,4 +17,4 @@ q6: 3-postfix-exp.c
 q7: 3-postfix-exp.c
 	time $(CC) -o 7-gcd 7-gcd.c $(CFLAGS)
 clean:
-	rm -f 2-stack-opp-pointer 1-stack-operation 3-postfix-exp 5-factorial 6-fibonacci 7-gcd
+	rm -f 4-prefix-exp 2-stack-opp-pointer 1-stack-operation 3-postfix-exp 5-factorial 6-fibonacci 7-gcd

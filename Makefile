@@ -10,11 +10,13 @@ q3: 3-postfix-exp.c
 	time $(CC) -o 3-postfix-exp 3-postfix-exp.c $(CFLAGS)
 q4: 4-prefix-exp.c
 	$(CC) -o 4-prefix-exp 4-prefix-exp.c $(CFLAGS)
-q5: 3-postfix-exp.c
+q5: 5-factorial.c
 	time $(CC) -o 5-factorial 5-factorial.c $(CFLAGS)
-q6: 3-postfix-exp.c
+q6: 6-fibonacci.c
 	time $(CC) -o 6-fibonacci 6-fibonacci.c $(CFLAGS)
-q7: 3-postfix-exp.c
+q7: 7-gcd.c
 	time $(CC) -o 7-gcd 7-gcd.c $(CFLAGS)
+q8: 8-tower-of-hanoi.c
+	time $(CC) -o 8-tower-of-hanoi 8-tower-of-hanoi.c $(CFLAGS)
 clean:
-	rm -f 4-prefix-exp 2-stack-opp-pointer 1-stack-operation 3-postfix-exp 5-factorial 6-fibonacci 7-gcd
+	rm -f 8-tower-of-hanoi 4-prefix-exp 2-stack-opp-pointer 1-stack-operation 3-postfix-exp 5-factorial 6-fibonacci 7-gcd

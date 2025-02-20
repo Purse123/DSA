@@ -91,6 +91,7 @@ int main() {
     printf("%c", PRE_STACK[i]);
   }
   printf("\n");
+  printf("Programmed by Pierce Neupane\n");
 }
 
 void stack_push(char value) {

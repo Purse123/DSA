@@ -20,6 +20,20 @@ d) Exit**
 ***
 7. **Write a recursive program to find `GCD` of two integers.**
 ***
+8. **Write a recursive program to implement `TOH` problem. (Show the output for `3 disks`).**
+***
+9. **Write a `menu driven` program to illustrate basic operations of `Linear queue` using `array` implementation and `pointer` implementation.
+a) Enqueue
+b) Dequeue
+c) Display all values
+d) Exit**
+***
+10. **Write a menu driven program to illustrate basic operations of circular queue having following menu:
+a) Enqueue
+b) Dequeue
+c) Traverse
+d) Exit**
+***
 
 ## Ascii value:
     2 3 4 5 6 7       30 40 50 60 70 80 90 100 110 120

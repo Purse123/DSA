@@ -46,7 +46,7 @@ void TRAVERSE(void) {
 }
 
 int main() {
-  int stack_int;
+  int stack_int = 0;
 
   printf("-----------------------------\n");
   printf("Choose the stack operation\n");

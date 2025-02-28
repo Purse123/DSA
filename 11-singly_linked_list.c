@@ -1,13 +1,16 @@
 #include <stdio.h>
 
 typedef enum {
-  ENQUEUE = 1,
-  DEQUEUE,
+  CREATION = 1,
+  INSERTION,
+  DELETION,
   TRAVERSE,
-  EXIT,
+  EXIT
 } Operations;
 
-void insertion();
+void creation();
+void insertion() {
+}
 void deletion();
 void traversal();
 
@@ -25,16 +28,19 @@ int main() {
     Operations q = op_int;
 
     switch (q) {
-      case ENQUEUE:
+      case CREATION:
+        creation();
+        break;
+      case INSERTION:
         insertion();
         break;
-      case 2:
+      case DELETION:
         deletion();
         break;
-      case 3:
+      case TRAVERSE:
         traversal();
         break;
-      case 4:
+      case EXIT:
         printf("Exiting...\n");
         break;
       default:

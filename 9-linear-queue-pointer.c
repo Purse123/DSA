@@ -90,18 +90,18 @@ int main() {
     scanf("%d", &queue_int);
 
     switch (queue_int) {
-      case 1:
+      case ENQUEUE:
         printf("Enter the value: ");
         scanf("%d", &value);
         Enqueue (value);
         break;
-      case 2:
+      case DEQUEUE:
         Dequeue();
         break;
-      case 3:
+      case TRAVERSE:
         Traverse();
         break;
-      case 4:
+      case EXIT:
         printf("Exiting...\n");
         break;
       default:

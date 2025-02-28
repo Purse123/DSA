@@ -1,7 +1,3 @@
-/**
-  Copyright (c) 2025 Author. All Rights Reserved.
-**/
-
 #include <stdio.h>
 #include <stdlib.h>
 typedef enum {
@@ -68,16 +64,16 @@ int main() {
     STACK_OPERATION var = stack_int;
 
     switch (var) {
-    case 1:
+case STACK_PUSH:
         PUSH();
       break;
-    case 2:
+    case STACK_POP:
         POP();
       break;
-    case 3:
+    case STACK_TRAVERSE:
         TRAVERSE();
       break;
-    case 4:
+    case EXIT:
         printf("Exiting...\n");
       break;
     default:

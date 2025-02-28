@@ -22,6 +22,8 @@ q9a: 9-linear-queue.c
 	time $(CC) -o 9-linear-queue 9-linear-queue.c $(CFLAGS)
 q9b: 9-linear-queue-pointer.c
 	time $(CC) -o 9-linear-queue-pointer 9-linear-queue-pointer.c
+q10: 10-circular-queue.c
+	time $(CC) -o 10-circular-queue 10-circular-queue.c $(CFLAGS)
 
 clean:
-	rm -f 9-linear-queue 9-linear-queue-pointer 8-tower-of-hanoi 4-prefix-exp 2-stack-opp-pointer 1-stack-operation 3-postfix-exp 5-factorial 6-fibonacci 7-gcd
+	rm -f 9-linear-queue 9-linear-queue-pointer 8-tower-of-hanoi 4-prefix-exp 2-stack-opp-pointer 1-stack-operation 3-postfix-exp 5-factorial 6-fibonacci 7-gcd 10-circular-queue

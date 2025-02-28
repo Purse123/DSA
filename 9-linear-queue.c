@@ -34,7 +34,6 @@ void Dequeue(Queue *queue) {
   queue->front++;
 }
 
-// traverse using recursion need helper function
 void Traverse(Queue *queue) {
   if (queue->front > queue->rear) {
     printf("Queue is empty\n");

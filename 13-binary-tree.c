@@ -50,8 +50,8 @@ void inorder(NODE *root) {
 
 void postOrder(NODE *root) {
   if (root) {
-    inorder(root->left);
-    inorder(root->right);
+    postOrder(root->left);
+    postOrder(root->right);
     printf("%d ", root->data);
   }
 }

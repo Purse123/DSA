@@ -30,7 +30,7 @@ void enqueue (ciQueue *q) {
 
 void dequeue (ciQueue *q) {
   if (q->front == q->rear) {
-    printf("Queue is empty\n"); return;
+    printf("Queue is empty\n");
     return;
   }
   q->front = (q->front + 1) % MAX_QUEUE_CAPACITY;
@@ -39,7 +39,7 @@ void dequeue (ciQueue *q) {
 
 void traverse (ciQueue *q) {
   if (q->front == q->rear) {
-    printf("Queue is empty\n"); return;
+    printf("Queue is empty\n");
     return;
   }
 

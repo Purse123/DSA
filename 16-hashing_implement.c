@@ -1,113 +1,150 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct HashNode {
+#define TABLE_SIZE 10
+#define EMPTY -1   // Marker for an empty slot
+#define DELETED -2 // Marker for a deleted slot
+
+typedef enum {
+  INSERTION = 1,
+  SEARCHING,
+  DISPLAY,
+  DELETION,
+  EXIT
+} HASHINGOPERATION;
+
+typedef struct NODE {
   int key;
   int value;
-};
+} NODE;
 
-const int capacity = 20;
-int size = 0;
+NODE hashTable[TABLE_SIZE];
 
-struct HashNode** arr;
-struct HashNode* dummy;
+// Linear probing hash function
+#define HASH_FUNCTION(key) (key % TABLE_SIZE)
 
-void insert(int key, int V) {
-  struct HashNode* temp = (struct HashNode*)malloc(sizeof(struct HashNode));
-  temp->key = key;
-  temp->value = V;
+void insertion(NODE n) {
+  // Value of index is determined by
+  // a. hash = hash_func(key)
+  // b. index = hash % array_size
+  int index = HASH_FUNCTION(n.key);
+  int originalIndex = index;
 
-  int hashIndex = key % capacity;
+  while (hashTable[index].key != EMPTY && hashTable[index].key != DELETED) {
+    index = (index + 1) % TABLE_SIZE;
 
-  while (arr[hashIndex] != NULL && arr[hashIndex]->key != key && arr[hashIndex]->key != -1) {
-    hashIndex++;
-    hashIndex %= capacity;
-  }
-
-  if (arr[hashIndex] == NULL || arr[hashIndex]->key == -1)
-    size++;
-
-  arr[hashIndex] = temp;
-}
-
-int delete (int key) {
-  int hashIndex = key % capacity;
-
-  while (arr[hashIndex] != NULL) {
-    if (arr[hashIndex]->key == key) {
-      arr[hashIndex] = dummy;
-      size--;
-      return 1;
+    if (index == originalIndex) {
+      printf("Hash table is full! Cannot insert (%d, %d)\n", n.key, n.value);
+      return;
     }
-    hashIndex++;
-    hashIndex %= capacity;
   }
-  return 0;
+
+  hashTable[index].key = n.key;
+  hashTable[index].value = n.value;
+  printf("Inserted (%d, %d) at index %d\n", n.key, n.value, index);
 }
 
-int find(int key) {
-  int hashIndex = (key % capacity);
-  int counter = 0;
+void search(int key) {
+  int index = HASH_FUNCTION(key);
+  int originalIndex = index;
 
-  while (arr[hashIndex] != NULL) {
-    if (counter++ > capacity)
-      break;
-    if (arr[hashIndex]->key == key)
-      return arr[hashIndex]->value;
-    hashIndex++;
-    hashIndex %= capacity;
+  while (hashTable[index].key != EMPTY) {
+    if (hashTable[index].key == key) {
+      printf("Found (%d, %d) at index %d\n", key, hashTable[index].value, index);
+      return;
+    }
+
+    index = (index + 1) % TABLE_SIZE;
+
+    if (index == originalIndex) break;
   }
-  return -1;
+
+  printf("Key %d not found in the hash table.\n", key);
+}
+
+void deletion(int key) {
+  int index = HASH_FUNCTION(key);
+  int originalIndex = index;
+
+  while (hashTable[index].key != EMPTY) {
+    if (hashTable[index].key == key) {
+      hashTable[index].key = DELETED;
+      printf("Deleted key %d from index %d\n", key, index);
+      return;
+    }
+
+    index = (index + 1) % TABLE_SIZE;
+
+    if (index == originalIndex) break; // Full cycle completed
+  }
+  printf("Key %d not found. Cannot delete.\n", key);
+}
+
+// Function to display the hash table
+void display() {
+  for (int i = 0; i < TABLE_SIZE; i++) {
+    if (hashTable[i].key == EMPTY) {
+      printf("Index %d: EMPTY\n", i);
+    } else if (hashTable[i].key == DELETED) {
+      printf("Index %d: DELETED\n", i);
+    } else {
+      printf("Index %d: (%d, %d)\n", i, hashTable[i].key, hashTable[i].value);
+    }
+  }
 }
 
 int main() {
-  arr = (struct HashNode**)malloc(sizeof(struct HashNode*) * capacity);
-  for (int i = 0; i < capacity; i++)
-    arr[i] = NULL;
+  int deleteKey, searchKey;
+  int op;
+  NODE new_node;
 
-  dummy = (struct HashNode*)malloc(sizeof(struct HashNode));
-  dummy->key = -1;
-  dummy->value = -1;
+  // Initialize hash table
+  for (int i = 0; i < TABLE_SIZE; i++) {
+    hashTable[i].key = EMPTY;
+    hashTable[i].value = 0;
+  }
 
-  int choice, key, value;
+  printf("-----------------------------\n");
+  printf("Choose a hashing operation\n");
+  printf("1. INSERTION\n2. SEARCHING\n3. DISPLAY\n4. DELETION\n5. EXIT\n");
+  printf("-----------------------------\n");
+
   while (1) {
-    printf("\nMenu:\n");
-    printf("1. Insert\n");
-    printf("2. Find\n");
-    printf("3. Delete\n");
-    printf("4. Exit\n");
-    printf("Enter your choice: ");
-    scanf("%d", &choice);
+    printf("Enter the instruction key: ");
+    scanf("%d", &op);
 
-    switch (choice) {
-      case 1:
-        printf("Enter key and value: ");
-        scanf("%d %d", &key, &value);
-        insert(key, value);
-        printf("Inserted (%d, %d)\n", key, value);
+    switch (op) {
+      case INSERTION:
+        printf("Enter key: ");
+        scanf("%d", &new_node.key);
+        printf("Enter value: ");
+        scanf("%d", &new_node.value);
+        insertion(new_node);
         break;
-      case 2:
-        printf("Enter key to find: ");
-        scanf("%d", &key);
-        value = find(key);
-        if (value != -1)
-          printf("Value of key %d = %d\n", key, value);
-        else
-          printf("Key %d does not exist\n", key);
+
+      case SEARCHING:
+        printf("Enter key to search: ");
+        scanf("%d", &searchKey);
+        search(searchKey);
         break;
-      case 3:
+
+      case DISPLAY:
+        display();
+        break;
+
+      case DELETION:
         printf("Enter key to delete: ");
-        scanf("%d", &key);
-        if (delete(key))
-          printf("Key %d deleted successfully\n", key);
-        else
-          printf("Key %d does not exist\n", key);
+        scanf("%d", &deleteKey);
+        deletion(deleteKey);
         break;
-      case 4:
+
+      case EXIT:
         printf("Exiting...\n");
         return 0;
+
       default:
-        printf("Invalid choice. Try again.\n");
+        printf("Choose a valid option.\n");
+        break;
     }
   }
 }

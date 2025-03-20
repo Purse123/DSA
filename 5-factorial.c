@@ -1,14 +1,13 @@
 #include <stdio.h>
 
-int factorial(int a) {
+size_t factorial(size_t a) {
   return (a <= 1) ? 1 : a * factorial(a - 1);
 }
 
 int main() {
-  int n;
+  size_t n;
   printf("Enter any number: ");
-  scanf("%d", &n);
+  scanf("%zu", &n);
 
-  int result = factorial(n);
-  printf("Factorial of n = %d\n", result);
+  printf("Factorial of n = %zu\n", factorial(n));
 }

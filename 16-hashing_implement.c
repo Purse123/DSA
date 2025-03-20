@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define TABLE_SIZE 10
+#define TABLE_SIZE 11
 #define EMPTY -1   // Marker for an empty slot
 #define DELETED -2 // Marker for a deleted slot
 
@@ -77,7 +77,7 @@ void deletion(int key) {
 
     if (index == originalIndex) break; // Full cycle completed
   }
-  printf("Key %d not found. Cannot delete.\n", key);
+  printf("Key %d not found.\n", key);
 }
 
 // Function to display the hash table

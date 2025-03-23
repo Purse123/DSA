@@ -68,5 +68,7 @@ int main() {
   addEdge(g, 2, 3);
 
   dfs(g, 0);
+  printf("__________________________\n");
+  printf("Programmed by: Pierce Neupane\n");
   return 0;
 }

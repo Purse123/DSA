@@ -91,5 +91,7 @@ int main() {
 
   free(graph->edges);
   free(graph);
+  printf("__________________________\n");
+  printf("Programmed by: Pierce Neupane\n");
   return 0;
 }

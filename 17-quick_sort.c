@@ -44,7 +44,7 @@ int main() {
   int *arr = (int *)malloc(n * sizeof(int));
 
   for (int i = 0; i < n; i++) {
-    printf("Enter %dth element: ", i);
+    printf("Enter %dth item: ", i);
     scanf("%d", arr + i);
   }
   quickSort(arr, 0, n - 1);
@@ -57,5 +57,7 @@ int main() {
   }
   printf("]\n");
   free(arr);
+  printf("__________________________\n");
+  printf("Programmed by: Pierce Neupane\n");
   return 0;
 }

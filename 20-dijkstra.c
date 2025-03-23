@@ -51,5 +51,7 @@ int main() {
 
   dijkstra(graph, 0);
 
+  printf("__________________________\n");
+  printf("Programmed by: Pierce Neupane\n");
   return 0;
 }

@@ -45,7 +45,7 @@ void heapSort(int *arr, int n) {
 
 int main() {
   int n;
-  printf("Enter number of elements: ");
+  printf("Enter no of elements: ");
   scanf("%d", &n);
 
   int *arr = (int *)malloc(n * sizeof(int));
@@ -64,5 +64,7 @@ int main() {
   printf("]\n");
 
   free(arr);
+  printf("__________________________\n");
+  printf("Programmed by: Pierce Neupane\n");
   return 0;
 }

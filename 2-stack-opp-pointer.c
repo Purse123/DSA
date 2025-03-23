@@ -80,4 +80,6 @@ case STACK_PUSH:
       printf("Input error\n");
     }
   }
+  printf("__________________________\n");
+  printf("Programmed by: Pierce Neupane\n");
 }

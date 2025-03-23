@@ -19,4 +19,6 @@ int main() {
     printf("%d\t", fibonacci(i));
   }
   printf("\n");
+  printf("__________________________\n");
+  printf("Programmed by: Pierce Neupane\n");
 }

@@ -14,4 +14,6 @@ int main() {
   char destination = 'D';
   char temporary = 'T';
   TOH(NO_OF_DISK, source, temporary, destination);
+  printf("__________________________\n");
+  printf("Programmed by: Pierce Neupane\n");
 }

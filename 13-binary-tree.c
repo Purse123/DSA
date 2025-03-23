@@ -93,5 +93,7 @@ int main() {
       printf("Invalid input\n");
     }
   }
+  printf("__________________________\n");
+  printf("Programmed by: Pierce Neupane\n");
   return 0;
 }

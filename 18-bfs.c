@@ -23,7 +23,7 @@ GRAPH* createGraph(int no_of_v) {
   GRAPH* graph = (GRAPH *)malloc(sizeof(GRAPH));
   graph->num_vertices = no_of_v;
 
-  // linked list of each vertex
+  // linked list of each node pointer
   graph->adj_lists = (NODE **)malloc(no_of_v * sizeof(NODE *));
   
   for (int i = 0; i < no_of_v; ++i) {
@@ -78,5 +78,7 @@ int main() {
   addEdge(g, 2, 3);
 
   bfs(g, 0);
+  printf("__________________________\n");
+  printf("Programmed by: Pierce Neupane\n");
   return 0;
 }

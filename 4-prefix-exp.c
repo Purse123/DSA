@@ -114,4 +114,6 @@ char stack_display() {
   } else {
     return OP_STACK[tos];
   }
+  printf("__________________________\n");
+  printf("Programmed by: Pierce Neupane\n");
 }

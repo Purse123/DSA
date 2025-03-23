@@ -10,4 +10,6 @@ int main() {
   scanf("%zu", &n);
 
   printf("Factorial of n = %zu\n", factorial(n));
+  printf("__________________________\n");
+  printf("Programmed by: Pierce Neupane\n");
 }

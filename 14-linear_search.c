@@ -30,4 +30,6 @@ int main () {
   } else {
     printf("Element found at pos %d\n", result);
   }
+  printf("__________________________\n");
+  printf("Programmed by: Pierce Neupane\n");
 }

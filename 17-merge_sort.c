@@ -53,5 +53,7 @@ int main() {
   printf("]\n");
 
   free(arr);
+  printf("__________________________\n");
+  printf("Programmed by: Pierce Neupane\n");
   return 0;
 }

@@ -10,4 +10,6 @@ int main() {
   scanf("%d%d", &a, &b);
 
   printf("gcd of %d and %d is %d\n", a, b, gcd(a, b));
+  printf("__________________________\n");
+  printf("Programmed by: Pierce Neupane\n");
 }

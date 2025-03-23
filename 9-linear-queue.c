@@ -86,4 +86,6 @@ int main() {
         break;
     }
   }
+  printf("__________________________\n");
+  printf("Programmed by: Pierce Neupane\n");
 }

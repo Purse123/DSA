@@ -8,10 +8,10 @@ typedef enum {
   EXIT
 } Operations;
 
-typedef struct Node{
+typedef struct Node {
   struct Node *next;
   int data;
-}NODE;
+} NODE;
 
 typedef struct linkedList {
   NODE *first;
@@ -20,13 +20,12 @@ typedef struct linkedList {
 
 linkedList *l;
 
-void insertion_beginning (int value) {
+void insertion_beginning(int value) {
   NODE *new_node = (NODE*)malloc(sizeof(NODE));
   if (!new_node) {
     perror("Failed to allocate memory");
     return;
   }
-
   new_node->data = value;
 
   if (l->first == NULL) {
@@ -36,19 +35,18 @@ void insertion_beginning (int value) {
   } else {
     new_node->next = l->first;
     l->first = new_node;
-    l->last->next = new_node;
+    l->last->next = l->first;
   }
 }
 
-void insertion_ending (int value) {
+void insertion_ending(int value) {
   NODE *new_node = (NODE*)malloc(sizeof(NODE));
   if (!new_node) {
     perror("Failed to allocate memory");
     return;
   }
-
   new_node->data = value;
-  
+
   if (l->first == NULL) {
     l->first = new_node;
     l->last = new_node;
@@ -60,21 +58,21 @@ void insertion_ending (int value) {
   }
 }
 
-void insertion_specific_position (int value, int pos) {
-  NODE *temp;
+void insertion_specific_position(int value, int pos) {
   NODE *new_node = (NODE*)malloc(sizeof(NODE));
   if (!new_node) {
     perror("Failed to allocate memory");
     return;
   }
   new_node->data = value;
-  
+
   if (l->first == NULL) {
     new_node->next = new_node;
     l->first = new_node;
     l->last = new_node;
     return;
   }
+
   if (pos == 1) {
     new_node->next = l->first;
     l->first = new_node;
@@ -82,12 +80,13 @@ void insertion_specific_position (int value, int pos) {
     return;
   }
 
-  temp = l->first;
+  NODE *temp = l->first;
   int count = 1;
   while (count < pos - 1 && temp->next != l->first) {
     temp = temp->next;
     count++;
   }
+
   if (count != pos - 1) {
     printf("Invalid position\n");
     free(new_node);
@@ -108,12 +107,17 @@ void deletion_beginning() {
   }
 
   NODE *temp = l->first;
-  l->first = l->first->next;
+  
+  if (l->first == l->last) { 
+    l->first = NULL;
+    l->last = NULL;
+  } else {
+    l->first = l->first->next;
+    l->last->next = l->first;
+  }
 
-  if (l->first == NULL) l->last = NULL; // If the list had only one node, update last pointer
-
-    free(temp);
-    printf("Deleted from beginning.\n");
+  free(temp);
+  printf("Deleted from beginning.\n");
 }
 
 void deletion_ending() {
@@ -121,8 +125,8 @@ void deletion_ending() {
     printf("List is empty! Nothing to delete.\n");
     return;
   }
-  
-  if (l->first == l->last) {
+
+  if (l->first == l->last) { 
     free(l->first);
     l->first = NULL;
     l->last = NULL;
@@ -137,18 +141,13 @@ void deletion_ending() {
 
   free(l->last);
   l->last = temp;
-  l->last->next = NULL;
+  l->last->next = l->first;
   printf("Deleted from end.\n");
 }
 
 void deletion_specific_position(int pos) {
   if (l->first == NULL) {
     printf("List is empty! Nothing to delete.\n");
-    return;
-  }
-
-  if (pos < 1) {
-    printf("Invalid position!\n");
     return;
   }
 
@@ -161,47 +160,48 @@ void deletion_specific_position(int pos) {
   NODE *prev = NULL;
   int count = 1;
 
-  while (temp != NULL && count < pos) {
+  while (count < pos && temp->next != l->first) {
     prev = temp;
     temp = temp->next;
     count++;
   }
 
-  if (temp == NULL) {
+  if (count != pos) {
     printf("Position out of range!\n");
     return;
   }
 
+  prev->next = temp->next;
+  
   if (temp == l->last) {
-    deletion_ending();
-    return;
+    l->last = prev;
   }
 
-  prev->next = temp->next;
   free(temp);
   printf("Deleted node at position %d.\n", pos);
 }
 
 void traversal() {
-  NODE *temp;
-
   if (l->first == NULL) {
     printf("Empty linked list\n");
     return;
-  } else {
-    temp = l->first;
-    do {
-      printf("%d\t", temp->data);
-      temp = temp->next;
-    } while (temp != l->last);
   }
+
+  NODE *temp = l->first;
+  do {
+    printf("%d\t", temp->data);
+    temp = temp->next;
+  } while (temp != l->first);
   printf("\n");
 }
 
 int main() {
   int op_int = 0, item, pos;
   l = (linkedList*)malloc(sizeof(linkedList));
-  if (l == NULL) perror("Failed to allocate memory for linked list");
+  if (l == NULL) {
+    perror("Failed to allocate memory for linked list");
+    return 1;
+  }
 
   l->first = NULL;
   l->last = NULL;
@@ -211,7 +211,7 @@ int main() {
   printf("1. Insertion\n2. Deletion\n3. TRAVERSE\n4. EXIT\n");
   printf("-----------------------------\n");
 
-  while(op_int != 4) {
+  while (op_int != 4) {
     printf("\nEnter the instruction key: ");
     scanf("%d", &op_int);
     Operations q = op_int;
@@ -220,48 +220,48 @@ int main() {
       case INSERTION:
         printf("Enter item: ");
         scanf("%d", &item);
-	printf("\nChoose the Insertion operation\n");
-	printf("1. Insertion at Beginning\n2. Insertion at End\n3. Insertion at Specific position\n");
-	scanf("%d", &op_int);
+        printf("\nChoose the Insertion operation\n");
+        printf("1. Insertion at Beginning\n2. Insertion at End\n3. Insertion at Specific position\n");
+        scanf("%d", &op_int);
 
-	switch(op_int) {
-	    case 1:
-	      insertion_beginning(item);
-	      break;
-	    case 2:
-	      insertion_ending(item);
-	      break;
-	    case 3:
-	      printf("Enter position: ");
-	      scanf("%d", &pos);
-	      insertion_specific_position(item, pos);
-	      break;
-	    default:
-	      printf("Not valid operation\n");
-	      break;
-	}
-	break;
+        switch (op_int) {
+          case 1:
+            insertion_beginning(item);
+            break;
+          case 2:
+            insertion_ending(item);
+            break;
+          case 3:
+            printf("Enter position: ");
+            scanf("%d", &pos);
+            insertion_specific_position(item, pos);
+            break;
+          default:
+            printf("Not valid operation\n");
+            break;
+        }
+        break;
       case DELETION:
-	printf("\nChoose the Deletion operation\n");
-	printf("1. Deletion at Beginning\n2. Deletion at End\n3. Deletion at Specific position\n");
-	scanf("%d", &op_int);
+        printf("\nChoose the Deletion operation\n");
+        printf("1. Deletion at Beginning\n2. Deletion at End\n3. Deletion at Specific position\n");
+        scanf("%d", &op_int);
 
-	switch(op_int) {
-	    case 1:
-	      deletion_beginning(item);
-	      break;
-	    case 2:
-	      deletion_ending(item);
-	      break;
-	    case 3:
-	      printf("Enter position: ");
-	      scanf("%d", &pos);
-	      deletion_specific_position(pos);
-	      break;
-	    default:
-	      printf("Not valid operation\n");
-	      break;
-	}
+        switch (op_int) {
+          case 1:
+            deletion_beginning();
+            break;
+          case 2:
+            deletion_ending();
+            break;
+          case 3:
+            printf("Enter position: ");
+            scanf("%d", &pos);
+            deletion_specific_position(pos);
+            break;
+          default:
+            printf("Not valid operation\n");
+            break;
+        }
         break;
       case TRAVERSE:
         traversal();
@@ -274,4 +274,9 @@ int main() {
         break;
     }
   }
+  
+  free(l);
+  printf("__________________________\n");
+  printf("Programmed by: Pierce Neupane\n");
+  return 0;
 }
